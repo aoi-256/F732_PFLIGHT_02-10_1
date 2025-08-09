@@ -25,9 +25,9 @@ void PreFlightState::exit(FlightManager& manager) {
 	//PIDの初期化
 	pidSetup();
 
-	//
+	//Madgwickフィルターの初期化(400hz)
+	madgwickStart(400);
 
 	//飛行用LEDをつける
 	greenLed(PinState::on);
-
 }

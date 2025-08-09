@@ -5,9 +5,7 @@
 #include <array>
 #include <gpio.h>
 #include "ICM42688P/ICM42688P_HAL_SPI.h"
-#include <algorithm>  // std::copy用
 
-// 実体は .cpp 側で定義する
 extern ICM42688P_HAL_SPI icm;
 
 inline uint8_t ImuInit(){

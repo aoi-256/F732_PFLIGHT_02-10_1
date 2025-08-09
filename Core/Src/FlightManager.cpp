@@ -27,7 +27,7 @@ void FlightManager::changeState(std::unique_ptr<FlightStateInterface> newState) 
     currentState->enter(*this);
 }
 
-// 状態呼び出し
+// 状態呼び出し(400hz)
 void FlightManager::update() {
 
     // SBUS接続チェック（Init状態の時以外）

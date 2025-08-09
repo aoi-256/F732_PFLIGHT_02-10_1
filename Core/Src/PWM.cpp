@@ -1,5 +1,6 @@
 #include "PWM.hpp"
 #include "math.h"
+#include <array>
 
 MotorTim motor_tim;
 MotorChannel motor_channel;
@@ -10,7 +11,7 @@ ServoChannel servo_channel;
 ServoPWM servo_pwm;
 
 //PIDの制御量をモータに分配
-void calcMotorPwm(float throttle, float control[3], uint16_t motor[4]){
+void calcMotorPwm(float throttle, std::array<float,3>& control, std::array<uint16_t,4>& motor){
 	motor[0] = motor_pwm.min + (throttle + control[0] - control[1] - control[2]);
 	motor[1] = motor_pwm.min + (throttle + control[0] + control[1] + control[2]);
 	motor[2] = motor_pwm.min + (throttle - control[0] - control[1] + control[2]);
@@ -37,7 +38,7 @@ void calcMotorPwm(float throttle, float control[3], uint16_t motor[4]){
 	}
 }
 
-void calcServoPwm(SbusChannelData sbus_data, uint16_t adc_value, uint16_t* servo){
+void calcServoPwm(SbusChannelData sbus_data, uint16_t adc_value, std::array<uint16_t, 2>& servo){
 
 	//投下条件
 	//autodrop == 1 かつ 赤外線が閾値以上
@@ -97,7 +98,7 @@ void pwmIdle(){
 	__HAL_TIM_SET_COMPARE(servo_tim.servo1 , servo_channel.servo2, servo_pwm.close);
 }
 
-void pwmGenerate(uint16_t* motor, uint16_t* servo){
+void pwmGenerate(std::array<uint16_t,4>& motor, std::array<uint16_t,2>& servo){
 
 	//motor
 	__HAL_TIM_SET_COMPARE(motor_tim.motor1 , motor_channel.motor1, motor[0]);
@@ -121,29 +122,4 @@ void pwmStop(){
 	//servo
 	HAL_TIM_PWM_Stop(servo_tim.servo1, servo_channel.servo1);
 	HAL_TIM_PWM_Stop(servo_tim.servo2, servo_channel.servo2);
-}
-
-void testMotor(){
-	pwmInit();
-	HAL_Delay(1000);
-	uint8_t i,j;
-	uint16_t motor[4],hoge[4];
-	for (i=0;i<4;i++){
-		for (j=0;j<4;j++){
-			if (i==j){
-				motor[j] = motor_pwm.min;
-			}else{
-			motor[j] = motor_pwm.init;
-			}
-		}
-		pwmGenerate(motor,hoge);
-		HAL_Delay(300);
-		motor[0] = motor_pwm.init;
-		motor[1] = motor_pwm.init;
-		motor[2] = motor_pwm.init;
-		motor[3] = motor_pwm.init;
-		pwmGenerate(motor,hoge);
-
-	}
-	pwmStop();
 }

@@ -42,7 +42,7 @@ inline void pidSetup(){
 }
 
 //角度PIDの計算
-inline void anglePIDCalc(const std::array<float, 2>& current, const std::array<float, 2>& target){
+inline void anglePIDCalc(const std::array<float, 3>& current, const std::array<float, 3>& target){
 
     angle_pitch.Calc(current[0], target[0]);
     angle_roll.Calc(current[1], target[1]);
@@ -57,7 +57,7 @@ inline void ratePIDCalc(const std::array<float, 3>& current, const std::array<fl
 }
 
 //角度PIDの値取得
-inline void anglePIDGetData(std::array<float, 2>& target_rate){
+inline void anglePIDGetData(std::array<float, 3>& target_rate){
 
     target_rate[0] = angle_pitch.GetData();
     target_rate[1] = angle_roll.GetData();

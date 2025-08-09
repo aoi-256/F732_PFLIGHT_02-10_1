@@ -18,9 +18,7 @@ struct SbusChannelData{
     float throttle_max = 750.0f; // PWMの最大値を指定(PWMは0~1000の範囲 値を大きくしすぎると高回転時に姿勢制御が難しくなる)
 
     // 目標値
-    float target_pitch_angle = 0.0;
-    float target_roll_angle = 0.0;
-    float target_yaw_rate = 0.0;
+	std::array<float, 3> target_value;
     float throttle = 0.0;
 
     // スイッチ

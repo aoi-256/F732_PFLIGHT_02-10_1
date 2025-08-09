@@ -2,6 +2,7 @@
 
 void FailSafeState::update(FlightManager& manager) {
 
+	//enterでループを使った強制停止をするため未実装
 
 }
 
@@ -19,4 +20,6 @@ void FailSafeState::enter(FlightManager& manager) {
 
 void FailSafeState::exit(FlightManager& manager) {
 
+	//failsafeからの復帰処理
+	//実装予定なし
 }
