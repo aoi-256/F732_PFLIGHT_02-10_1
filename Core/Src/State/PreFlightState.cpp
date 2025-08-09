@@ -1,10 +1,4 @@
-#include "../../Inc/State/Headers/FlightStates.h"
-#include <memory>
-#include <stdio.h>
-
-#include "FlightManager.h"
-#include "LED.hpp"
-#include "PID_USER.hpp"
+#include "State/Headers/FlightStates.h"
 
 void PreFlightState::update(FlightManager& manager) {
 

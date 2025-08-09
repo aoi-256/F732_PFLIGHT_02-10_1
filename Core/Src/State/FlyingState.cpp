@@ -1,8 +1,4 @@
-#include "../../Inc/State/Headers/FlightStates.h"
-#include <memory>
-#include "FlightManager.h"
-#include "gpio.h"
-#include <stdio.h>
+#include "State/Headers/FlightStates.h"
 
 void FlyingState::update(FlightManager& manager) {
 
@@ -16,7 +12,7 @@ void FlyingState::update(FlightManager& manager) {
 void FlyingState::enter(FlightManager& manager) {
     // TODO: 飛行状態への入場処理を実装
 
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);
+
 
 }
 

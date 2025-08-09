@@ -1,4 +1,4 @@
-#include "../../Inc/State/Headers/FlightStates.h"
+#include "State/Headers/FlightStates.h"
 
 void EmergencyControlState::update(FlightManager& manager) {
     // TODO: 緊急制御状態の更新処理を実装

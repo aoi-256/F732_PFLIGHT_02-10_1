@@ -1,8 +1,4 @@
-#include "../../Inc/State/Headers/FlightStates.h"
-#include <memory>
-#include "FlightManager.h"
-#include "LED.hpp"
-#include <stdio.h>
+#include "State/Headers/FlightStates.h"
 
 void FailSafeState::update(FlightManager& manager) {
 

@@ -1,12 +1,4 @@
-#include "../../Inc/State/Headers/FlightStates.h"
-
-#include <memory>
-#include <stdio.h>
-
-#include "FlightManager.h"
-#include "imu.hpp"
-#include "LED.hpp"
-#include "PWM.hpp"
+#include "State/Headers/FlightStates.h"
 
 void InitState::update(FlightManager& manager) {
 

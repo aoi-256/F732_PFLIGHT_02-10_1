@@ -1,9 +1,4 @@
-#include "../../Inc/State/Headers/FlightStates.h"
-#include <memory>
-#include "FlightManager.h"
-#include <stdio.h>
-#include "PWM.hpp"
-#include "LED.hpp"
+#include "State/Headers/FlightStates.h"
 
 void PreArmingState::update(FlightManager& manager) {
 
