@@ -12,26 +12,31 @@ class PID {
 
 	public:
 
-		void Setup(float Input_Gain_P, float Input_Gain_I, float Input_Gain_D, float time);
-		void GainSet(float kp, float ki, float kd);
-		void TimeSet(float time);
-		void LimitSet(float i_max, float d_max);
-		void Calc(float Target, float Angle);
-		float GetData();
-		void Reset();
+		PID();
+		PID(float p_gain, float i_gain, float d_gain, float time);
+		PID(float p_gain, float i_gain, float d_gain, float d_max, float i_max, float time);
+		void setGain(float p_gain, float i_gain, float d_gain);
+		void setTime(float time);
+		void setLimit(float i_max, float d_max);
+		void calc(float target, float process_value);
+		float getData();
+		void reset();
 
 	private:
 
-		float Gain_P    = 0.0;
-		float Gain_I    = 0.0;
-		float Gain_D    = 0.0;
-		float Goal      = 0.0;
-		float Pre_Error = 0.0;
-		float integral  = 0.0;
-		float Time      = 0.000;
-		float control   = 0.0;
-		float I_Max     = 1000.0;  // 積分項の制限値
-		float D_Max     = 1000.0;  // 微分項の制限値
+		float p_gain    = 0.0f;
+		float i_gain    = 0.0f;
+		float d_gain    = 0.0f;	
+		float i_max     = 1000.0f;  // 積分項の制限値
+		float d_max     = 1000.0f;  // 微分項の制限値
+		float pre_error = 0.0f;
+		float pre_error2 = 0.0f;   // 2サンプル前の誤差（シンプソン補正用）
+		float integral  = 0.0f;
+		float time      = 0.0f;
+		float control   = 0.0f;
+		// ゼロ除算回避用の最小周期（調整可能にする場合はsetter追加を検討）
+		float time_min  = 1e-6f;
+		int   sample_count = 0;    // 取得済みサンプル数（シンプソン適用判定用）
 };
 
 #endif /* INC_PID_H_ */

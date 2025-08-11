@@ -2,6 +2,9 @@
 
 void DisarmingState::update(FlightManager& manager) {
 
+	pwmStop();
+	pidReset();
+
 	manager.changeState(std::make_unique<PreArmingState>());
 }
 
