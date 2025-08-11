@@ -8,6 +8,8 @@ void FailSafeState::update(FlightManager& manager) {
 
 void FailSafeState::enter(FlightManager& manager) {
 
+	//while(1)までには何もかかないこと
+
 	while(1){
 
 		for(volatile uint32_t i=0; i<1000000; i++);

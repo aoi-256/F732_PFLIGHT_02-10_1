@@ -2,8 +2,6 @@
 
 void InitState::update(FlightManager& manager) {
 
-	// TODO: SBUSの受信チェックをする
-
 	// SBUSの受信チェック
 	if(!manager.sbus_data.is_receive){
 

@@ -57,7 +57,7 @@ class FlightManager {
 
     private:
 
-        std::unique_ptr<FlightStateInterface> currentState;
+    std::unique_ptr<FlightStateInterface> current_state;
         uint16_t sbus_lost_count = 0;
 
 };

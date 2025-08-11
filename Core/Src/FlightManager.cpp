@@ -5,46 +5,37 @@
 
 // コンストラクタ
 FlightManager::FlightManager() {
-
     // 初期状態をInitStateに設定
-    currentState = std::make_unique<InitState>();
-    currentState->enter(*this);
+    current_state = std::make_unique<InitState>();
+    current_state->enter(*this);
 }
 
 // 状態更新
-void FlightManager::changeState(std::unique_ptr<FlightStateInterface> newState) {
-
-    if (currentState) {
-        currentState->exit(*this);
+void FlightManager::changeState(std::unique_ptr<FlightStateInterface> new_state) {
+    if (current_state) {
+        current_state->exit(*this);
     }
-
-    currentState = std::move(newState);
-    
+    current_state = std::move(new_state);
     // 状態名をprintfで出力
-    if (currentState) {
-        printf("[FlightManager] 状態遷移: %s\n", currentState->getStateName());
+    if (current_state) {
+        printf("[FlightManager] 状態遷移: %s\n", current_state->getStateName());
     }
-    currentState->enter(*this);
+    current_state->enter(*this);
 }
 
 // 状態呼び出し(400hz)
 void FlightManager::update() {
-
     // SBUS接続チェック（Init状態の時以外）
-    if (currentState && std::strcmp(currentState->getStateName(), "InitState") != 0) {
-
+    if (current_state && std::strcmp(current_state->getStateName(), "InitState") != 0) {
         // SBUSのタイムアウトチェック用
         sbus_lost_count ++;
-
         if (!checkSbusConnect()) {
-
             changeState(std::make_unique<FailSafeState>());
             return;
         }
     }
-
-    if (currentState) {
-        currentState->update(*this);
+    if (current_state) {
+        current_state->update(*this);
     }
 }
 

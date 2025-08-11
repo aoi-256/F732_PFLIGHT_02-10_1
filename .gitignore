@@ -1,6 +1,13 @@
 # Build outputs
 /Debug/
 /Release/
+*.o
+*.su
+*.d
+*.elf
+*.map
+*.list
+*.cyclo
 
 # IDE settings (environment-specific)
 /.settings/
@@ -10,3 +17,12 @@
 
 # Debug/launch configurations (environment-dependent)
 *.launch
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs
+*.log
