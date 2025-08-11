@@ -52,6 +52,7 @@ void FlyingState::update(FlightManager& manager) {
 	//PWMを生成
 	pwmGenerate(manager.control_data.motor_pwm, manager.control_data.servo_pwm);
 
+	printf("motorPwm: %4u, %4u, %4u, %4u \n", manager.control_data.motor_pwm[0], manager.control_data.motor_pwm[1], manager.control_data.motor_pwm[2], manager.control_data.motor_pwm[3]);
 }
 
 void FlyingState::enter(FlightManager& manager) {
