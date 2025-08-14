@@ -6,7 +6,7 @@ void PreArmingState::update(FlightManager& manager) {
 	if(manager.sbus_data.arm){
 
 		//PreFlightStateに遷移
-		manager.changeState(std::unique_ptr<FlightStateInterface>(std::make_unique<PreFlightState>()));
+		manager.changeState(std::make_unique<PreFlightState>());
 	}
 
 }

@@ -5,7 +5,7 @@ void FlyingState::update(FlightManager& manager) {
     // 飛行状態の更新処理を実装
 	if(!manager.sbus_data.arm){
 
-		manager.changeState(std::unique_ptr<FlightStateInterface>(std::make_unique<DisarmingState>()));
+		manager.changeState(std::make_unique<DisarmingState>());
 	}
 
 	static uint8_t loop_count = 0;

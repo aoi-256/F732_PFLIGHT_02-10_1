@@ -17,7 +17,7 @@ void InitState::update(FlightManager& manager) {
 	}
 
 	// PreArmStateへの遷移
-	manager.changeState(std::unique_ptr<FlightStateInterface>(std::make_unique<PreArmingState>()));
+	manager.changeState(std::make_unique<PreArmingState>());
 }
 
 void InitState::enter(FlightManager& manager) {

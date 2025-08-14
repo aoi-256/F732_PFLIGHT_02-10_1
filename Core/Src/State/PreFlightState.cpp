@@ -5,13 +5,13 @@ void PreFlightState::update(FlightManager& manager) {
 	// Armスイッチの判定
 	if(!manager.sbus_data.arm){
 
-		manager.changeState(std::unique_ptr<FlightStateInterface>(std::make_unique<DisarmingState>()));
+		manager.changeState(std::make_unique<DisarmingState>());
 	}
 
 	// Flightスイッチの判定
 	if(manager.sbus_data.fly){
 
-		manager.changeState(std::unique_ptr<FlightStateInterface>(std::make_unique<FlyingState>()));
+		manager.changeState(std::make_unique<FlyingState>());
 	}
 }
 
