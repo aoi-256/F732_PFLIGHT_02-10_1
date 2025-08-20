@@ -10,7 +10,7 @@
 
 #include <cstdint>
 #include <array>
-#include "MadgwickAHRS/MadgwickAHRS.h"
+#include "MadgwickAHRS/src/MadgwickAHRS.h"
 
 // 実体は .cpp 側で定義
 extern Madgwick madgwick;
