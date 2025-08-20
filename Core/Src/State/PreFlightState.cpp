@@ -28,7 +28,7 @@ void PreFlightState::exit(FlightManager& manager) {
 	}
 
 	//Madgwickフィルターの初期化(400hz)
-	manager.madgwick.begin(400.0f);
+	manager.madgwick.begin(UserSetting::MadgwickSampleFreq);
 
 	//飛行用LEDをつける
 	greenLed(PinState::on);

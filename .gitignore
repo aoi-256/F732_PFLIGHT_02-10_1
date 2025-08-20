@@ -27,3 +27,5 @@ Thumbs.db
 # Logs
 *.log
 Core/Lib/SBUS
+Core/Lib/ICM42688P
+Core/Lib/SBUS

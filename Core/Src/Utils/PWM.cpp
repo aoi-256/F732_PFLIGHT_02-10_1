@@ -1,4 +1,4 @@
-#include "PWM.hpp"
+#include "Utils/PWM.hpp"
 #include "math.h"
 #include <array>
 
@@ -17,14 +17,10 @@ void calcMotorPwm(float throttle, std::array<float,3>& control, std::array<uint1
 	motor[2] = motor_pwm.min + (throttle - control[0] - control[1] + control[2]);
 	motor[3] = motor_pwm.min + (throttle - control[0] + control[1] - control[2]);
 
-//	uint32_t pwm_min = motor_pwm.min;
-//	uint32_t pwm_max = motor_pwm.max;
-//	uint32_t pwm_max2 = motor_pwm.max * motor_pwm.max;
-//	uint32_t pwm_min2 = motor_pwm.min * motor_pwm.min;
-//	uint32_t pwm_range = pwm_max - pwm_min;
-//	uint32_t pwm_range2 = pwm_max2 - pwm_min2;
+	//　最大値と最小値を超えた場合の処理
 
 	for(uint8_t i=0; i<4; i++){
+
 		if(motor[i] >= motor_pwm.max){
 
 			motor[i] = motor_pwm.max;
@@ -33,8 +29,6 @@ void calcMotorPwm(float throttle, std::array<float,3>& control, std::array<uint1
 
 			motor[i] = motor_pwm.min;
 		}
-		//線形的になるように処理
-		//motor[i] = sqrt(pwm_min2 + pwm_range2 * (motor[i] - pwm_min) / pwm_range);
 	}
 }
 
