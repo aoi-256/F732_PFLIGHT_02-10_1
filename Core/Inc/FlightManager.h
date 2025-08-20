@@ -3,6 +3,10 @@
 #include "FlightData/ControlData.hpp"
 #include "FlightData/SbusData.hpp"
 #include "FlightData/SensorData.hpp"
+#include "Utils/PIDInit.hpp"
+#include "Utils/PIDUtils.hpp"
+#include "Utils/ICM42688P_SPI_Util.hpp"
+#include "MadgwickAHRS/src/MadgwickAHRS.h"
 #include <memory>
 #include <iostream>
 
@@ -55,9 +59,13 @@ class FlightManager {
         SbusChannelData sbus_data;
         ControlData control_data;
 
+    PIDUtils* pidUtils;
+    ICM42688P_SPI_Util* imuUtil;
+    Madgwick madgwick;
+
     private:
 
     std::unique_ptr<FlightStateInterface> current_state;
-        uint16_t sbus_lost_count = 0;
+    uint16_t sbus_lost_count = 0;
 
 };

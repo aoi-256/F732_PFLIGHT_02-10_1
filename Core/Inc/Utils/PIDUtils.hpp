@@ -26,7 +26,9 @@ public:
 
     // 角度PID計算
     void anglePIDCalc(const std::array<float, 3>& current, const std::array<float, 3>& target) {
+
         if (angle_pitch_ && angle_roll_) {
+
             angle_pitch_->calc(target[0], current[0]);
             angle_roll_->calc(target[1], current[1]);
         }
@@ -34,7 +36,9 @@ public:
 
     // 角速度PID計算
     void ratePIDCalc(const std::array<float, 3>& current, const std::array<float, 3>& target) {
+
         if (rate_pitch_ && rate_roll_ && rate_yaw_) {
+
             rate_pitch_->calc(target[0], current[0]);
             rate_roll_->calc(target[1], current[1]);
             rate_yaw_->calc(target[2], current[2]);
@@ -43,7 +47,9 @@ public:
 
     // 角度PID値取得
     void anglePIDGetData(std::array<float, 3>& target_rate) {
+
         if (angle_pitch_ && angle_roll_) {
+
             target_rate[0] = angle_pitch_->getData();
             target_rate[1] = angle_roll_->getData();
         }
@@ -51,7 +57,9 @@ public:
 
     // 角速度PID値取得
     void ratePIDGetData(std::array<float, 3>& rate) {
+
         if (rate_pitch_ && rate_roll_ && rate_yaw_) {
+
             rate[0] = rate_pitch_->getData();
             rate[1] = rate_roll_->getData();
             rate[2] = rate_yaw_->getData();
@@ -60,6 +68,7 @@ public:
 
     // PIDリセット
     void pidReset() {
+
         if (angle_pitch_) angle_pitch_->reset();
         if (angle_roll_)  angle_roll_->reset();
         if (rate_pitch_)  rate_pitch_->reset();
@@ -68,6 +77,7 @@ public:
     }
 
 private:
+
     PIDUtils() = default;
 
     PID* angle_pitch_ = nullptr;

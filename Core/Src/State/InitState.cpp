@@ -10,10 +10,11 @@ void InitState::update(FlightManager& manager) {
 	}
 
 	// IMUの通信チェック
-	if(ImuInit() != 0){
-
-		printf("IMU_ERROR \n");
-		return;
+	if (manager.imuUtil) {
+		if (manager.imuUtil->init() != 0) {
+			printf("IMU_ERROR \n");
+			return;
+		}
 	}
 
 	// PreArmStateへの遷移

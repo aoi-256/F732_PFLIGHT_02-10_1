@@ -11,11 +11,18 @@ void FlyingState::update(FlightManager& manager) {
 	static uint8_t loop_count = 0;
 
 	// センサーデータの取得
-	ImuGetData(manager.sensor_data.accel, manager.sensor_data.gyro);
+	if (manager.imuUtil) {
+		manager.imuUtil->getData(manager.sensor_data.accel, manager.sensor_data.gyro);
+	}
 
-    // Madgickフィルターによる姿勢推定
-    madgwickUpdate(manager.sensor_data.accel, manager.sensor_data.gyro);
-    madgwickGetAngle(manager.sensor_data.angle);
+	// MadgwickAHRSライブラリによる姿勢推定
+	manager.madgwick.updateIMU(
+		manager.sensor_data.gyro[0], manager.sensor_data.gyro[1], manager.sensor_data.gyro[2],
+		manager.sensor_data.accel[0], manager.sensor_data.accel[1], manager.sensor_data.accel[2]
+	);
+	manager.sensor_data.angle[0] = manager.madgwick.getRoll();
+	manager.sensor_data.angle[1] = manager.madgwick.getPitch();
+	manager.sensor_data.angle[2] = manager.madgwick.getYaw();
 
     // センサー向きの調整
     float buf = manager.sensor_data.gyro[0];
@@ -28,8 +35,11 @@ void FlyingState::update(FlightManager& manager) {
     if(loop_count % 4 == 0){
 
     	// 目標角と現在角から目標角速度を計算
-		anglePIDCalc(manager.sensor_data.angle, manager.sbus_data.target_value);
-    	anglePIDGetData(manager.control_data.target_rate);
+		if (manager.pidUtils) {
+
+			manager.pidUtils->anglePIDCalc(manager.sensor_data.angle, manager.sbus_data.target_value);
+			manager.pidUtils->anglePIDGetData(manager.control_data.target_rate);
+		}
 
     	// yaw軸はセンサーデータを使用
     	manager.control_data.target_rate[2] = manager.sbus_data.target_value[2];
@@ -37,8 +47,11 @@ void FlyingState::update(FlightManager& manager) {
 
     // 400hz 角速度制御
 	//目標角速度と現在角速度(センサーデータ）から制御量を計算
-	ratePIDCalc(manager.sensor_data.gyro, manager.control_data.target_rate);
-	ratePIDGetData(manager.control_data.pid_result);
+	if (manager.pidUtils) {
+
+		manager.pidUtils->ratePIDCalc(manager.sensor_data.gyro, manager.control_data.target_rate);
+		manager.pidUtils->ratePIDGetData(manager.control_data.pid_result);
+	}
 
 	// PID結果を各モーターに分配
 	calcMotorPwm(manager.sbus_data.throttle, manager.control_data.pid_result, manager.control_data.motor_pwm);
