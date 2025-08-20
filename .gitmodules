@@ -1,3 +1,12 @@
 [submodule "Core/Lib/PID"]
 	path = Core/Lib/PID
 	url = git@github.com:NOKOLat/2025_PFLIGHT_PID.git
+[submodule "Core/Lib/ICM42688P"]
+	path = Core/Lib/ICM42688P
+	url = https://github.com/NOKOLat/STM32_ICM42688P
+[submodule "Core/Lib/SBUS"]
+	path = Core/Lib/SBUS
+	url = https://github.com/NOKOLat/SBUS
+[submodule "Core/Lib/MadgwickAHRS"]
+	path = Core/Lib/MadgwickAHRS
+	url = https://github.com/arduino-libraries/MadgwickAHRS
