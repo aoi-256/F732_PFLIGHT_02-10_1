@@ -3,8 +3,7 @@
 
 #include <cstdint>
 #include <array>
-#include "PID/PID.h"  // 大文字に統一
-
+#include "PID/PID.h"
 // 実体は.cppで定義
 extern PID angle_pitch;
 extern PID angle_roll;
