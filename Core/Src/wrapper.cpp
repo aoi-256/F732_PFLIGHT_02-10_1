@@ -3,7 +3,7 @@
 #include "usart.h"
 #include "FlightManager.h"
 #include "Sbus\sbus.h"
-#include "Sbus\sbus_decoder.hpp"
+#include "SbusDecoder.hpp"
 
 FlightManager flightManager;
 FlightLoopManager flightLoopManager;
