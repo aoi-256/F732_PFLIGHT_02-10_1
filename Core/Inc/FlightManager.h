@@ -7,6 +7,7 @@
 #include "Utils/PIDInit.hpp"
 #include "Utils/PIDUtils.hpp"
 #include "Utils/ICM42688P_SPI_Util.hpp"
+#include "Utils/LED.hpp"
 #include "MadgwickAHRS/src/MadgwickAHRS.h"
 #include <memory>
 #include <iostream>
