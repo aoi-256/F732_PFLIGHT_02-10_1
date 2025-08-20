@@ -10,3 +10,6 @@
 [submodule "Core/Lib/MadgwickAHRS"]
 	path = Core/Lib/MadgwickAHRS
 	url = https://github.com/arduino-libraries/MadgwickAHRS
+[submodule "Core/Lib/Ring-Buffer"]
+	path = Core/Lib/Ring-Buffer
+	url = https://github.com/NOKOLat/Ring-Buffer
