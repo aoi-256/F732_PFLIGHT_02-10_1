@@ -1,0 +1,3 @@
+[submodule "Core/Lib/PID"]
+	path = Core/Lib/PID
+	url = git@github.com:NOKOLat/2025_PFLIGHT_PID.git
