@@ -16,3 +16,6 @@
 [submodule "Core/Lib/ringBuffer"]
 	path = Core/Lib/ringBuffer
 	url = https://github.com/NOKOLat/Ring-Buffer
+[submodule "Core/Lib/KalmanFilter"]
+	path = Core/Lib/KalmanFilter
+	url = https://github.com/NOKOLat/2025_PFLIGHT_KalmanFilter.git
