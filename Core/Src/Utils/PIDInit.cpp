@@ -29,5 +29,5 @@ void InitPIDFromUserSetting() {
     rate_yaw.setLimit(rate_yaw_limit.i_max, rate_yaw_limit.d_max);
     rate_yaw.setTime(rate_yaw_dt.dt);
 
-    PIDUtils::getInstance(&angle_pitch, &angle_roll, &rate_pitch, &rate_roll, &rate_yaw);
+    ThreeDoFPID::getInstance(&angle_pitch, &angle_roll, &rate_pitch, &rate_roll, &rate_yaw);
 }

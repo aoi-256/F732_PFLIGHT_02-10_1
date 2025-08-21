@@ -5,7 +5,8 @@
 #include "FlightData/SensorData.hpp"
 #include "UserSetting/PIDSetting.hpp"
 #include "Utils/PIDInit.hpp"
-#include "Utils/PIDUtils.hpp"
+// PID管理はThreeDoFPID.hppに統一
+#include "Utils/ThreeDoFPID.hpp"
 #include "Utils/ICM42688P_SPI_Util.hpp"
 #include "Utils/LED.hpp"
 #include "MadgwickAHRS/src/MadgwickAHRS.h"
@@ -61,7 +62,7 @@ class FlightManager {
         SbusChannelData sbus_data;
         ControlData control_data;
 
-		PIDUtils* pidUtils;
+    ThreeDoFPID* threedofpid;
 		ICM42688P_SPI_Util* imuUtil;
 		Madgwick madgwick;
 

@@ -2,7 +2,7 @@
 
 #include "UserSetting/PIDSetting.hpp"
 #include "PID/PID.h"
-#include "Utils/PIDUtils.hpp"
+#include "Utils/ThreeDoFPID.hpp"
 
 // extern宣言のみ
 extern PID angle_pitch;

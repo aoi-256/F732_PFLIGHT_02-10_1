@@ -9,7 +9,7 @@ FlightManager::FlightManager() {
     
     //PIDのインスタンス作成と取得
     InitPIDFromUserSetting(); 
-    pidUtils = &PIDUtils::getInstance();
+    threedofpid = &ThreeDoFPID::getInstance();
 
     // 初期状態をInitStateに設定
     current_state = std::make_unique<InitState>();

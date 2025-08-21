@@ -27,9 +27,8 @@ void PreFlightState::enter(FlightManager& manager) {
 void PreFlightState::exit(FlightManager& manager) {
 
 	//PIDの初期化
-	if (manager.pidUtils) {
-
-		manager.pidUtils->pidReset();
+	if (manager.threedofpid) {
+		manager.threedofpid->pidReset(); // ThreeDoFPID型
 	}
 
 	//Madgwickフィルターの初期化(400hz)

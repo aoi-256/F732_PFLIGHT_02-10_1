@@ -4,9 +4,8 @@ void DisarmingState::update(FlightManager& manager) {
 
 	PwmStop();
 
-	if (manager.pidUtils) {
-
-		manager.pidUtils->pidReset();
+	if (manager.threedofpid) {
+		manager.threedofpid->pidReset(); // ThreeDoFPID型
 	}
 
 	manager.changeState(std::make_unique<PreArmingState>());
