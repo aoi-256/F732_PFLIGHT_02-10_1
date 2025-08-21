@@ -13,3 +13,6 @@
 [submodule "Core/Lib/Ring-Buffer"]
 	path = Core/Lib/Ring-Buffer
 	url = https://github.com/NOKOLat/Ring-Buffer
+[submodule "Core/Lib/ringBuffer"]
+	path = Core/Lib/ringBuffer
+	url = https://github.com/NOKOLat/Ring-Buffer
