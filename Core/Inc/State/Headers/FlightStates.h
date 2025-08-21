@@ -5,6 +5,7 @@
 
 #include <memory>
 
+#include "adc.h"
 #include "Utils/PWM.hpp"
 #include "Utils/LED.hpp"
 

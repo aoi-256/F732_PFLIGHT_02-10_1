@@ -2,8 +2,10 @@
 
 void DisarmingState::update(FlightManager& manager) {
 
-	pwmStop();
+	PwmStop();
+
 	if (manager.pidUtils) {
+
 		manager.pidUtils->pidReset();
 	}
 

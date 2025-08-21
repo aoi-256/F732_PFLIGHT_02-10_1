@@ -8,6 +8,10 @@ void PreFlightState::update(FlightManager& manager) {
 		manager.changeState(std::make_unique<DisarmingState>());
 	}
 
+	// Servo判定とPwm出力(abc_value = 0)
+	PwmCalcServo(manager.sbus_data, 0, manager.control_data.servo_pwm);
+	PwmGenerateServo(manager.control_data.servo_pwm);
+
 	// Flightスイッチの判定
 	if(manager.sbus_data.fly){
 
@@ -24,6 +28,7 @@ void PreFlightState::exit(FlightManager& manager) {
 
 	//PIDの初期化
 	if (manager.pidUtils) {
+
 		manager.pidUtils->pidReset();
 	}
 

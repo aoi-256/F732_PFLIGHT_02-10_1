@@ -20,6 +20,8 @@ void FlyingState::update(FlightManager& manager) {
 		manager.sensor_data.gyro[0], manager.sensor_data.gyro[1], manager.sensor_data.gyro[2],
 		manager.sensor_data.accel[0], manager.sensor_data.accel[1], manager.sensor_data.accel[2]
 	);
+
+	// 推定結果の取得
 	manager.sensor_data.angle[0] = manager.madgwick.getRoll();
 	manager.sensor_data.angle[1] = manager.madgwick.getPitch();
 	manager.sensor_data.angle[2] = manager.madgwick.getYaw();
@@ -54,16 +56,20 @@ void FlyingState::update(FlightManager& manager) {
 	}
 
 	// PID結果を各モーターに分配
-	calcMotorPwm(manager.sbus_data.throttle, manager.control_data.pid_result, manager.control_data.motor_pwm);
+	PwmCalcMotor(manager.sbus_data.throttle, manager.control_data.pid_result, manager.control_data.motor_pwm);
+
+	// ADCの値を読む
+	uint16_t adc_value = 0;
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1, 1);
+	adc_value = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
 
 	// Servoのpwmを生成
-	uint16_t adc_value = 0;
-
-	// adcの値を読む
-	calcServoPwm(manager.sbus_data, adc_value, manager.control_data.servo_pwm);
+	PwmCalcServo(manager.sbus_data, adc_value, manager.control_data.servo_pwm);
 
 	// PWMを生成
-	pwmGenerate(manager.control_data.motor_pwm, manager.control_data.servo_pwm);
+	PwmGenerate(manager.control_data.motor_pwm, manager.control_data.servo_pwm);
 
 	// デバック用コード
 	//printf("sbus_yaw: %lf \n", manager.sbus_data.target_value[2]);

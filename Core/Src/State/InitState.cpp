@@ -11,7 +11,9 @@ void InitState::update(FlightManager& manager) {
 
 	// IMUの通信チェック
 	if (manager.imuUtil) {
+
 		if (manager.imuUtil->init() != 0) {
+
 			printf("IMU_ERROR \n");
 			return;
 		}
@@ -26,7 +28,7 @@ void InitState::enter(FlightManager& manager) {
 	printf("FC start \n");
 
 	//PWMの停止（安全のため）
-	pwmStop();
+	PwmStop();
 }
 
 void InitState::exit(FlightManager& manager) {

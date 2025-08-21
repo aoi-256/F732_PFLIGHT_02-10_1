@@ -97,16 +97,16 @@ LED 配線（`LED.hpp` 定義）
 
 状態ごとの点灯タイミング（コード実装に基づく）
 
-| 状態                   | タイミング        | LED動作                                     |
+| 状態                    | タイミング             | LED動作                                     |
 |------------------------|-------------------|---------------------------------------------|
 | InitState              | 終了時            | 赤 LED ON（初期化完了の合図）               |
 | PreArmingState         | 終了時            | 黄 LED ON（ARM/ESC初期化完了の合図）        |
 | PreFlightState         | 終了時            | 緑 LED ON（飛行開始の合図）                 |
 | FlyingState            | 開始時            | 変更なし（緑ON維持）                        |
 | DisarmingState         | 終了時            | 黄/緑 LED OFF（DISARMの合図）               |
-| FailSafeState          | 開始時（ループ） 　 | 赤/黄/緑を周期的にトグル（フェイルセーフ） |
-| AutoFlyState           | —                 | なし                                        |
-| EmergencyControlState  | —                 | なし                                        |
+| FailSafeState          | 開始時（ループ） 　    | 赤/黄/緑を周期的にトグル（フェイルセーフ） |
+| AutoFlyState           | —                | なし                                        |
+| EmergencyControlState  | —                | なし                                        |
 
 注意
 - 上記は現行コードの enter/exit 実装に基づく点灯タイミングです。実際の視覚挙動は状態遷移のタイミングに依存します。
