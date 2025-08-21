@@ -15,6 +15,18 @@ void PreFlightState::update(FlightManager& manager) {
 	// Flightスイッチの判定
 	if(manager.sbus_data.fly){
 
+		//PIDの初期化
+		if (manager.threedofpid) {
+
+			manager.threedofpid->pidReset(); // ThreeDoFPID型
+		}
+
+		//Madgwickフィルターの初期化(400hz)
+		manager.madgwick.begin(UserSetting::MadgwickSampleFreq);
+
+		//飛行用LEDをつける
+		greenLed(PinState::on);
+
 		manager.changeState(std::make_unique<FlyingState>());
 	}
 }
@@ -26,14 +38,4 @@ void PreFlightState::enter(FlightManager& manager) {
 
 void PreFlightState::exit(FlightManager& manager) {
 
-	//PIDの初期化
-	if (manager.threedofpid) {
-		manager.threedofpid->pidReset(); // ThreeDoFPID型
-	}
-
-	//Madgwickフィルターの初期化(400hz)
-	manager.madgwick.begin(UserSetting::MadgwickSampleFreq);
-
-	//飛行用LEDをつける
-	greenLed(PinState::on);
 }

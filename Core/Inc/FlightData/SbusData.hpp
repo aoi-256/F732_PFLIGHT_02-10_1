@@ -27,6 +27,7 @@ struct SbusChannelData{
     uint8_t drop = false;
     bool autodrop = false;
     bool autofly = false;
+    bool emergency_control = false;
 
     // 受信判定
     bool is_receive = false;
@@ -38,7 +39,7 @@ struct SbusChannelData{
 
 enum class SbusChannel: uint8_t{
 
-    //channel = index - 1;
+    //channel = propo_index - 1;
 	throttle = 3 - 1,
 	pitch = 2 - 1,
 	roll = 1 - 1,
@@ -48,6 +49,7 @@ enum class SbusChannel: uint8_t{
 	drop = 7 - 1,
 	autodrop = 8 - 1,
 	autofly = 9 - 1,
+    emergency_control = 10 - 1,
 };
 
 #endif // SBUS_DATA_HPP

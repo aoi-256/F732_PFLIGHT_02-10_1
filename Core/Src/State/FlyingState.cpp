@@ -2,13 +2,15 @@
 
 void FlyingState::update(FlightManager& manager) {
 
-    // 飛行状態の更新処理を実装
+	// ループカウント（PIDの処理をするかを決定）
+	static uint8_t loop_count = 0;
+	loop_count++;
+
+    // Armのチェック
 	if(!manager.sbus_data.arm){
 
 		manager.changeState(std::make_unique<DisarmingState>());
 	}
-
-	static uint8_t loop_count = 0;
 
 	// センサーデータの取得
 	if (manager.imuUtil){
